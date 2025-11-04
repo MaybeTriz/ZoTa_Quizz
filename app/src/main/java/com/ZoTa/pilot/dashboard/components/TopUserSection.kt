@@ -61,7 +61,8 @@ fun TopUserSection(){
 
             Image(painter=painterResource(R.drawable.plus),
                 contentDescription = null,
-                modifier=Modifier.size(size=20.dp))
+                modifier=Modifier.size(size=20.dp)
+            )
         }
     }
 }

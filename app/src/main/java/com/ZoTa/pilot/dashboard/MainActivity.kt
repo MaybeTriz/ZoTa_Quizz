@@ -1,4 +1,5 @@
 package com.ZoTa.pilot.dashboard
+import com.ZoTa.pilot.R
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,37 +12,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.ContextCompat
+import com.ZoTa.pilot.dashboard.screens.MainScreen
 import com.ZoTa.pilot.ui.theme.PilotTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        window.statusBarColor= ContextCompat.getColor(this,R.color.grey)
         setContent {
-            PilotTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            MainScreen(onSinglePlayerClick = {
+
             }
+                , onBoardClick={})
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PilotTheme {
-        Greeting("Android")
-    }
-}

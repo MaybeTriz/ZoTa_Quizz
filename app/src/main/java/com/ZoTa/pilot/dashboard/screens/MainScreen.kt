@@ -3,19 +3,31 @@ package com.ZoTa.pilot.dashboard.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.ZoTa.pilot.dashboard.components.TopUserSection
+import androidx.compose.ui.unit.dp
 import com.ZoTa.pilot.R
+import com.ZoTa.pilot.dashboard.components.Banner
+import com.ZoTa.pilot.dashboard.components.BottomNavigationBar
+import com.ZoTa.pilot.dashboard.components.CategoryGrid
+import com.ZoTa.pilot.dashboard.components.CategoryHeader
+import com.ZoTa.pilot.dashboard.components.GameMadeButtons
+import com.ZoTa.pilot.dashboard.components.TopUserSection
 
 @Composable
 @Preview
-fun MainScreen(){
+fun MainScreen(
+    onSinglePlayerClick:()->Unit={},
+    onBoardClick:() -> Unit = {}
+){
     val scrollState= rememberScrollState()
 
     Box(
@@ -30,7 +42,22 @@ fun MainScreen(){
         ){
 
             TopUserSection()
+            Spacer(modifier=Modifier.height(16.dp))
+            GameMadeButtons(onSinglePlayerClick)
+            Spacer(modifier=Modifier.height(32.dp))
+            CategoryHeader()
+            CategoryGrid()
+            Banner()
+
         }
+        BottomNavigationBar(
+            modifier = Modifier.align (Alignment.BottomCenter),
+            onItemSelected = {itemId->
+                if(itemId==R.id.Board){
+                onBoardClick()
+                }
+            }
+        )
     }
 
 }
